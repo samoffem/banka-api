@@ -1,0 +1,22 @@
+{
+  "name": "banka-api",
+  "version": "1.0.0",
+  "description": "API endpoints for banka",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Samuel Offem",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mocha": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0"
+  }
+}
