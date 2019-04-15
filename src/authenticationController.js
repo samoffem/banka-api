@@ -145,7 +145,8 @@ module.exports = {
     },
     credit(req, res) {
         try {
-            let accountDetail = accounts.find((account) => req.body.accountNumber === account.accountNumber)
+            let accountDetail = accounts.find((account)=> req.body.accountNumber === account.accountNumber)
+            console.log(accountDetail)
             const oldBalance = accountDetail.balance;
             accountDetail.balance = accountDetail.balance + req.body.amount
             const newBalance = accountDetail.balance;

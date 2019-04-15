@@ -70,20 +70,6 @@ describe('/PATCH activate or deactivate account', ()=>{
     })
 })
 
-describe('/DELETE deletes an account', ()=>{
-    it('deletes a users account', ()=>{
-        const details = {
-            accountNumber: "4321"
-        }
-        chai.request(server)
-            .delete('/api/v1/account/'+4321)
-            .send(details)
-            .end((err, res)=>{
-                res.should.have.status(200)
-                res.body.should.have.property('message')
-            })
-    })
-})
 
 describe('/POST credits an account', ()=>{
     it('credits a users account', ()=>{
@@ -97,9 +83,41 @@ describe('/POST credits an account', ()=>{
             .post('/api/v1/transaction/'+ 4321 + '/credit')
             .send(details)
             .end((err, res)=>{
-                console.log(res.body)
                 res.should.have.status(200)
-                //res.body.data.should.have.property('transactionId')
+                res.body.data.should.have.property('transactionId')
+            })
+    })
+})
+
+describe('/POST debits an account', ()=>{
+    it('debits a users account', ()=>{
+        const details = {
+            accountNumber:4321,
+            amount:3000,
+            cashier:1001,
+            transactionType:"debit"
+        }
+        chai.request(server)
+            .post('/api/v1/transaction/'+ 4321 + '/debit')
+            .send(details)
+            .end((err, res)=>{
+                res.should.have.status(200)
+                res.body.data.should.have.property('transactionId')
+            })
+    })
+})
+
+describe('/DELETE deletes an account', ()=>{
+    it('deletes a users account', ()=>{
+        const details = {
+            accountNumber: "4321"
+        }
+        chai.request(server)
+            .delete('/api/v1/account/'+4321)
+            .send(details)
+            .end((err, res)=>{
+                res.should.have.status(200)
+                res.body.should.have.property('message')
             })
     })
 })
